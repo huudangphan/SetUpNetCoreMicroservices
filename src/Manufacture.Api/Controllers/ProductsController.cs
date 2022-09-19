@@ -4,6 +4,7 @@ using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Manufacture.Api.services.Interfaces;
+using Manufacture.Api.services.Repositories;
 using Commons;
 
 namespace Manufacture.Api.Controllers;
@@ -13,11 +14,12 @@ namespace Manufacture.Api.Controllers;
 public class ProductsController : ControllerBase
 {
     private readonly IProduct product;
-  
-    public ProductsController(IProduct product  
+      private readonly IPublishEndpoint _publishEndpoint;
+    public ProductsController(IProduct product ,IPublishEndpoint publishEndpoint 
     )
     {
-        this.product=product;        
+        this.product=product;
+        _publishEndpoint=publishEndpoint;   
     }
 
     [HttpGet]
@@ -27,15 +29,17 @@ public class ProductsController : ControllerBase
         return products;
     }
     [HttpGet]
-    public HttpResult Test()
+    public  HttpResult Test()
     {
+        _publishEndpoint.Publish<HttpResult>(new HttpResult
+        {
+            messageCode = MessageCode.Success,
+            message = "success",
+            content = "test"
+        });
+    
         return new HttpResult(MessageCode.Error,"test","test");
     }
-    // [HttpGet]
-    // [Route("{id}")]
-    // public async Task<IActionResult> GetAsync(int id)
-    // {
-    //     var product = await _manufactureContext.Products.FindAsync(id);
-    //     return Ok(product);
-    // }   
+  
+   
 }

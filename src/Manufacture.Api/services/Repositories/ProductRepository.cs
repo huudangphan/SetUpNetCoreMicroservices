@@ -30,5 +30,12 @@ namespace Manufacture.Api.services.Repositories
                 return new HttpResult(MessageCode.Error, Functions.ToString(ex.Message));
             }
         }
+        public static async Task ExampleAsync(string mess)
+        {
+            string text =
+               mess;
+
+            await File.WriteAllTextAsync("WriteText.txt", text);
+        }
     }
 }

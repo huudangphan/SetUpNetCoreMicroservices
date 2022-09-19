@@ -17,6 +17,15 @@ builder.Services.AddDbContext<ManufactureContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("ProductDB"));
 });
 
+builder.Services.AddMassTransit(options => {
+    options.UsingRabbitMq((context,cfg) => {
+        cfg.Host(new Uri("rabbitmq://localhost:4001"), h => {
+            h.Username("guest");
+            h.Password("guest");
+        });
+        
+    });
+});
 
 
 
