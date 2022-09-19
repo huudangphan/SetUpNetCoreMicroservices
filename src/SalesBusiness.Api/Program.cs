@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SalesBusiness.Api.services.Interfaces;
 using SalesBusiness.Api.services.Repositories;
 using SalesBusiness.Api.Data;
+using SalesBusiness.Api.Consumer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,19 @@ builder.Services.AddDbContext<SalesBusinessContext>(options =>
 {
 	options.UseSqlServer(builder.Configuration.GetConnectionString("ProductDB"));
 });
-
+builder.Services.AddMassTransit(x => {
+    x.AddConsumer<TestConsumer>();
+    x.UsingRabbitMq((cxt, cfg) => {
+        cfg.Host(new Uri("rabbitmq://localhost:4001"), h => {
+            h.Username("guest");
+            h.Password("guest");
+        });
+        cfg.ReceiveEndpoint("event-listener", e =>
+        {
+            e.ConfigureConsumer<TestConsumer>(cxt);
+        });
+    });
+});
 
 
 var app = builder.Build();

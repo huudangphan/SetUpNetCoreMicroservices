@@ -41,5 +41,6 @@ namespace SalesBusiness.Api.services.Repositories
                 return new HttpResult(MessageCode.Error, Functions.ToString(ex.Message));
             }
         }
+        
     }
 }
