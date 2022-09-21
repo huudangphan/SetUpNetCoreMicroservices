@@ -8,17 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.9" />
-    <PackageReference Include="Ocelot" Version="18.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QTS.Commons\QTS.Commons.csproj" />
-    <ProjectReference Include="..\src\UserServices.Api\UserServices.Api.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\..\QTS.Commons\QTS.Commons.csproj" />
   </ItemGroup>
 
 </Project>

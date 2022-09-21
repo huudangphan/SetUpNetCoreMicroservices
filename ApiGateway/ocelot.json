@@ -1,7 +1,8 @@
 {
-  "Routes": [
-
+  "Routes": [    
     {
+      "UpstreamPathTemplate": "/manufacture/products/Get",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
       "DownstreamPathTemplate": "/Products/Get",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -10,10 +11,15 @@
           "Port": 7109
         }
       ],
-      "UpstreamPathTemplate": "/manufacture/products/Get",
-      "UpstreamHttpMethod": [ "Get", "Post" ]
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+
     },
     {
+      "UpstreamPathTemplate": "/manufacture/products/Test",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
       "DownstreamPathTemplate": "/Products/Test",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -22,10 +28,15 @@
           "Port": 7109
         }
       ],
-      "UpstreamPathTemplate": "/manufacture/products/Test",
-      "UpstreamHttpMethod": [ "Get", "Post" ]
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+
     },
     {
+      "UpstreamPathTemplate": "/sales/orders/Get",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
       "DownstreamPathTemplate": "/Orders/Get",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -34,10 +45,15 @@
           "Port": 7013
         }
       ],
-      "UpstreamPathTemplate": "/sales/orders/Get",
-      "UpstreamHttpMethod": [ "Get", "Post" ]
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+
     },
     {
+      "UpstreamPathTemplate": "/sales/orders/Post",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
       "DownstreamPathTemplate": "/Orders/Post",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -46,8 +62,23 @@
           "Port": 7013
         }
       ],
-      "UpstreamPathTemplate": "/sales/orders/Post",
-      "UpstreamHttpMethod": [ "Get", "Post" ]
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      }
+
+    },
+    {
+      "UpstreamPathTemplate": "/user/login",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamPathTemplate": "/User/GenToken",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
     }
   ],
   "GlobalConfiguration": {}
