@@ -1,15 +1,18 @@
 using Commons;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using QTS.Commons;
 using SalesBusiness.Api.Data;
 using SalesBusiness.Api.Data.Entities;
 using SalesBusiness.Api.services.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 
+
 namespace SalesBusiness.Api.Controllers;
 
 [ApiController]
 [Route("[controller]/[action]")]
+[AuthorizeToken]
 public class OrdersController : ControllerBase
 {
     private ICategories context;
