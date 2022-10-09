@@ -1,6 +1,8 @@
 {
-  "Routes": [    
+  "Routes": [
+   // manufacture
     {
+
       "UpstreamPathTemplate": "/manufacture/products/Get",
       "UpstreamHttpMethod": [ "Get", "Post" ],
       "DownstreamPathTemplate": "/Products/Get",
@@ -34,6 +36,7 @@
       }
 
     },
+    // sale
     {
       "UpstreamPathTemplate": "/sales/orders/Get",
       "UpstreamHttpMethod": [ "Get", "Post" ],
@@ -68,6 +71,7 @@
       }
 
     },
+    // login
     {
       "UpstreamPathTemplate": "/user/login",
       "UpstreamHttpMethod": [ "Get", "Post" ],
